@@ -9,12 +9,6 @@ function AudioTagSample() {
 }
 
 AudioTagSample.prototype.onload = function() {
-  
-  //this.source.connect(context.destination);
-};
-
-AudioTagSample.prototype.play = function(url) {
-  this.audio.src = url;
   // Create the audio nodes.
   this.source = context.createMediaElementSource(this.audio);
   this.filter = context.createBiquadFilter();
@@ -24,5 +18,11 @@ AudioTagSample.prototype.play = function(url) {
   // Connect the audio graph.
   this.source.connect(this.filter);
   this.filter.connect(context.destination);
-  this.audio.play();
+  //this.source.connect(context.destination);
+};
+
+AudioTagSample.prototype.play = function(url) {
+  this.audio.src = url;
+  //this.audio.play();
+  this.source.start(0);
 };
