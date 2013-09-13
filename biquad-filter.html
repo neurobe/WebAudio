@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Biquad filter node test</title>
+    <script src="static/js/audio-utils.js"></script>
+    <script src="static/js/biquad-filter.js"></script>
+  </head> 
+  <body>
+    <ul><button id="play" onclick="biquadFilter.run()">Play/Pause</button></ul>
+    <ul>frequency <input id="frequency" type="range" min="340" max="360" value="350" onchange="biquadFilter.changeFrequency(this.value)"></input></ul>
+    <ul>detune <input id="detune" type="range" min="0" max="100" value="100" onchange="biquadFilter.changeDetune(this.value)"></input></ul>
+    <ul>Q <input id="Q" type="range" min="0" max="100" value="100" onchange="biquadFilter.changeQ(this.value)"></input></ul>
+    <ul>gain <input id="gain" type="range" min="-40" max="40" value="0" onchange="biquadFilter.changeGain(this.value)"></input></ul>
+    <ul>Type
+      <select onchange="biquadFilter.changeType(this.value)">
+        <option value="lowpass" selected>lowpass</option>
+        <option value="highpass">highpass</option>
+        <option value="bandpass">bandpass</option>
+        <option value="lowshelf">lowshelf</option>
+        <option value="highshelf">highshelf</option>
+        <option value="peaking">peaking</option>
+        <option value="notch">notch</option>
+        <option value="allpass">allpass</option>
+      </select>
+    </ul>
+    <script>
+      var url = "sound/sample.ogg";
+      biquadFilter.init(url);
+      biquadFilter.setupGraph();
+    </script>
+  </body>
+</html>

@@ -12,10 +12,10 @@ var AudioSource = {
   load: function as_load(url) {
     this.init();
     var request = new XMLHttpRequest();
-    request.requestType = "arraybuffer";
     request.open("GET", url, true);
+    request.responseType = "arraybuffer";
     var loader = this;
-    request.onload = function() {
+    request.onload = function req_onload() {
       loader.context.decodeAudioData(
         request.response,
         function (output) {
@@ -34,7 +34,7 @@ var AudioSource = {
         }
       );
     };
-    request.onerror = function(msg, url, l) {
+    request.onerror = function req_onerror(msg, url, l) {
       var errMsg = "There was an error on this page.\n\n";
       errMsg += "Error: " + msg + "\n";
       errMsg += "URL: " + url + "\n";
