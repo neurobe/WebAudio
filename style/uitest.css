@@ -9,7 +9,7 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: #fff;
 
   /* XXX: The below overflow property is being ignored by B2G Phone
      https://bugzilla.mozilla.org/show_bug.cgi?id=777672
@@ -134,4 +134,20 @@ body.test #tests {
   width: 3.8em;
   /*padding: 5px;
   margin: 8px;*/
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+}
+input{
+  display: inline-block;
+  float: left;
+}
+select{
+  display: inline-block;
+  float: left;
 }
