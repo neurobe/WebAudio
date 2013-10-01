@@ -5,7 +5,7 @@
   "launch_path": "/index.html",
   "developer": {
     "name": "MozQATW Team",
-    "url": "https://rawgithub.com/zapion/webaudio/master/"
+    "url": "https://github.com/zapion/webaudio/"
   },
   "messages": [
      { "alarm": "/index.html" }
