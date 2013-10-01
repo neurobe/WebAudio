@@ -1,7 +1,7 @@
 {
   "name": "WebAudio",
   "description": "test app for webaudio",
-  "type": "certified",
+  "type": "web",
   "launch_path": "/index.html",
   "developer": {
     "name": "MozQATW Team",
@@ -11,15 +11,6 @@
      { "alarm": "/index.html" }
   ],
   "permissions": {
-    "alarms":{},
-    "audio-channel-notification":{},
-    "contacts":{ "access": "readcreate" },
-    "desktop-notification":{},
-    "storage":{},
-    "device-storage:sdcard":{ "access": "readcreate" },
-    "systemXHR":{},
-    "settings":{ "access": "readonly" },
-    "tcp-socket":{}
   },
   "locales": {
     "ar": {
@@ -45,19 +36,6 @@
     "79": "/style/icons/webauido.png"
   },
   "activities": {
-    "new": {
-      "filters": {
-        "type": "webaudio"
-      },
-      "disposition": "window"
-    },
-    "share": {
-      "filters": {
-        "type": "image/*"
-       },
-      "disposition": "window",
-      "returnValue": true
-    },
     "view": {
       "filters": {
         "type": "url",
