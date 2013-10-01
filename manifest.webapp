@@ -2,7 +2,7 @@
   "name": "WebAudio",
   "description": "test app for webaudio",
   "type": "web",
-  "launch_path": "/index.html",
+  "launch_path": "/webaudio/index.html",
   "developer": {
     "name": "MozQATW Team",
     "url": "https://github.com/zapion/webaudio/"
