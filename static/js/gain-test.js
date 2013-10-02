@@ -19,7 +19,7 @@ var gainTest = {
     this.source.stop(0);
   },
   control: function gt_control(val) {
-    this.gainNode.gain.value = val/100;
+    this.gainNode.gain.value = val;
   },
   setupGraph: function gt_setupGraph() {
     this.source = this.context.createBufferSource();

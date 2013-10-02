@@ -11,6 +11,7 @@
      { "alarm": "/index.html" }
   ],
   "permissions": {
+      "audio-channel-content" : {"description":  "Use the audio channel for a music player"},
   },
   "locales": {
     "ar": {

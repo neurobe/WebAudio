@@ -6,11 +6,11 @@ var biquadFilter = {
     AudioSource.load(url);
     this.context = AudioSource.context;
   },
-  run: function gt_run() {
+  run: function bf_run() {
     (this.playing ? this.stop() : this.play());
     this.playing = !this.playing;
   },
-  play: function gt_play() {
+  play: function bf_play() {
     this.setupGraph();
     this.source.start(0);
     //set all values as default
@@ -19,30 +19,30 @@ var biquadFilter = {
     this.changeGain(this.biquadFilter.gain.defaultValue);
     this.changeQ(0);
   },
-  stop: function gt_stop() {
+  stop: function bf_stop() {
     this.source.stop(0);
   },
-  changeFrequency: function gt_changeFrequency(val) {
+  changeFrequency: function bf_changeFrequency(val) {
     this.biquadFilter.frequency.value = val;
     document.getElementById("frequency").nextSibling.innerHTML = val;
   },
-  changeDetune: function gt_changeDetune(val) {
+  changeDetune: function bf_changeDetune(val) {
     this.biquadFilter.detune.value = val;
     document.getElementById("detune").nextSibling.innerHTML = val + "%";
   },
-  changeType: function gt_changeType(val) {
+  changeType: function bf_changeType(val) {
     this.biquadFilter.type = val;
   },
-  changeGain: function gt_changeGain(val) {
+  changeGain: function bf_changeGain(val) {
     this.biquadFilter.gain.value = val;
     document.getElementById("gain").nextSibling.innerHTML = val;
   },
-  changeQ: function gt_changeQ(val) {
+  changeQ: function bf_changeQ(val) {
     var input = Math.pow(10, val);
     this.biquadFilter.Q.value = input;
     document.getElementById("Q").nextSibling.innerHTML = input;
   },
-  setupGraph: function gt_setupGraph() {
+  setupGraph: function bf_setupGraph() {
     this.source = this.context.createBufferSource();
     this.source.buffer = AudioSource.buffer[this.url];
     this.biquadFilter = this.context.createBiquadFilter();
