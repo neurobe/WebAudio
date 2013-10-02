@@ -25,7 +25,8 @@ var Convolver = {
     this.convolver = this.context.createConvolver();
     this.convolver.buffer = AudioSource.buffer[this.impulseResponse];
     this.analyser = this.context.createAnalyser();
-    this.source.connect(this.convolver);
-    this.convolver.connect(this.context.destination);
+    //this.source.connect(this.convolver);
+    //this.convolver.connect(this.context.destination);
+    this.source.connect(this.context.destination);
   }
 };
