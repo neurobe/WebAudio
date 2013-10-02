@@ -13,9 +13,7 @@
       <input value="sound/sample.ogg" placeholder="URL to audio file...">
       <button onclick="sample.play(document.querySelector('input').value)">Load URL</button>
       <script>
-        var input = document.querySelector('input');
         var sample = new AudioTagSample();
-        sample.play(input.value);
       </script>
     </p>
     </div>
