@@ -5,19 +5,14 @@ var biquadFilter = {
     AudioSource.init();
     AudioSource.load(url);
     this.context = AudioSource.context;
+    //this.setupGraph();
   },
   run: function bf_run() {
     (this.playing ? this.stop() : this.play());
     this.playing = !this.playing;
   },
   play: function bf_play() {
-    this.setupGraph();
     this.source.start(0);
-    //set all values as default
-    this.changeFrequency(this.biquadFilter.frequency.defaultValue);
-    this.changeDetune(this.biquadFilter.detune.defaultValue);
-    this.changeGain(this.biquadFilter.gain.defaultValue);
-    this.changeQ(0);
   },
   stop: function bf_stop() {
     this.source.stop(0);
@@ -52,5 +47,10 @@ var biquadFilter = {
     this.analyser = this.context.createAnalyser();
     this.source.connect(this.biquadFilter);
     this.biquadFilter.connect(this.context.destination);
+    //set all values as default
+    this.changeFrequency(this.biquadFilter.frequency.defaultValue);
+    this.changeDetune(this.biquadFilter.detune.defaultValue);
+    this.changeGain(this.biquadFilter.gain.defaultValue);
+    this.changeQ(0);
   }
 };
