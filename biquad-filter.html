@@ -7,10 +7,10 @@
   </head> 
   <body>
     <ul><button id="play" onclick="biquadFilter.run()">Play/Pause</button></ul>
-    <ul><label>frequency:</label><input id="frequency" type="range" min="220" max="1000" value="350" onchange="biquadFilter.changeFrequency(this.value)"></input><p>350</p></ul>
-    <ul><label>detune:</label><input id="detune" type="range" min="0" max="100" value="100" onchange="biquadFilter.changeDetune(this.value)"></input><p>100%</p></ul>
-    <ul><label>Q:</label><input id="Q" type="range" min="-4" max="4" value="0" onchange="biquadFilter.changeQ(this.value)"></input><p>1</p></ul>
-    <ul><label>gain:</label><input id="gain" type="range" min="-1000" max="1000" value="0" onchange="biquadFilter.changeGain(this.value)"></input><p>0</p></ul>
+    <ul><label>frequency:</label><input id="frequency" type="range" min="220" max="1000" value="500" onchange="biquadFilter.changeFrequency(this.value)"></input><p></p></ul>
+    <ul><label>detune:</label><input id="detune" type="range" min="0" max="100" value="100" onchange="biquadFilter.changeDetune(this.value)"></input><p></p></ul>
+    <ul><label>Q:</label><input id="Q" type="range" min="-4" max="4" value="0" onchange="biquadFilter.changeQ(this.value)"></input><p></p></ul>
+    <ul><label>gain:</label><input id="gain" type="range" min="-100" max="100" value="0" onchange="biquadFilter.changeGain(this.value)"></input><p></p></ul>
     <ul><label>Type: </label>
       <select onchange="biquadFilter.changeType(this.value)">
         <option value="lowpass" selected>lowpass</option>

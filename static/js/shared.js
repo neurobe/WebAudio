@@ -42,9 +42,6 @@ function loadSounds(obj, soundMap, callback) {
   bufferLoader.load();
 }
 
-
-
-
 function BufferLoader(context, urlList, callback) {
   this.context = context;
   this.urlList = urlList;

@@ -1,21 +1,30 @@
 'use strict';
 var biquadFilter = {
   init: function bf_init(url) {
+    this.audio = new audio();
+    this.audio.src = url;
     this.url = url;
     AudioSource.init();
     AudioSource.load(url);
     this.context = AudioSource.context;
     //this.setupGraph();
+    //set all values as default
+    this.changeFrequency(this.biquadFilter.frequency.defaultValue);
+    this.changeDetune(this.biquadFilter.detune.defaultValue);
+    this.changeGain(this.biquadFilter.gain.defaultValue);
+    this.changeQ(0);
   },
   run: function bf_run() {
     (this.playing ? this.stop() : this.play());
     this.playing = !this.playing;
   },
   play: function bf_play() {
-    this.source.start(0);
+    //this.source.start(0);
+    this.audio.play();
   },
   stop: function bf_stop() {
-    this.source.stop(0);
+    //this.source.stop(0);
+    this.audio.pause();
   },
   changeFrequency: function bf_changeFrequency(val) {
     this.biquadFilter.frequency.value = val;
@@ -38,7 +47,9 @@ var biquadFilter = {
     document.getElementById("Q").nextSibling.innerHTML = input;
   },
   setupGraph: function bf_setupGraph() {
-    this.source = this.context.createBufferSource();
+    //this.source = this.context.createBufferSource();
+    this.source = this.context.createMediaElementSource(this.audio);
+
     this.source.buffer = AudioSource.buffer[this.url];
     this.biquadFilter = this.context.createBiquadFilter();
     for(var i in this.biquadFilter.frequency) {
@@ -46,11 +57,8 @@ var biquadFilter = {
     }
     this.analyser = this.context.createAnalyser();
     this.source.connect(this.biquadFilter);
-    this.biquadFilter.connect(this.context.destination);
-    //set all values as default
-    this.changeFrequency(this.biquadFilter.frequency.defaultValue);
-    this.changeDetune(this.biquadFilter.detune.defaultValue);
-    this.changeGain(this.biquadFilter.gain.defaultValue);
-    this.changeQ(0);
+    this.biquadFilter.connect(this.context.destination); 
+    //this.source.start(0);
+    this.audio.play();
   }
 };

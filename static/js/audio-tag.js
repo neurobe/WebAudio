@@ -18,8 +18,9 @@ AudioTagSample.prototype.play = function(url) {
   // Create the audio nodes.
   this.source = context.createMediaElementSource(this.audio);
   this.filter = context.createBiquadFilter();
-  this.filter.type = this.filter.LOWPASS;
-  this.filter.frequency.value = 500;
+  //this.filter.type = this.filter.LOWPASS;
+  this.filter.type = "allpass";
+  this.filter.frequency.value = 350;
 
   // Connect the audio graph.
   this.source.connect(this.filter);
