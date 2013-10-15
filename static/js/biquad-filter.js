@@ -5,7 +5,7 @@ var biquadFilter = {
     AudioSource.init();
     AudioSource.load(url);
     this.context = AudioSource.context;
-    //this.setupGraph();
+    this.setupGraph();
   },
   run: function bf_run() {
     (this.playing ? this.stop() : this.play());
