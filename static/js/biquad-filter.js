@@ -48,9 +48,9 @@ var biquadFilter = {
     this.source.connect(this.biquadFilter);
     this.biquadFilter.connect(this.context.destination);
     //set all values as default
-    this.changeFrequency(this.biquadFilter.frequency.defaultValue);
-    this.changeDetune(this.biquadFilter.detune.defaultValue);
-    this.changeGain(this.biquadFilter.gain.defaultValue);
-    this.changeQ(0);
+    //this.changeFrequency(this.biquadFilter.frequency.defaultValue);
+    //this.changeDetune(this.biquadFilter.detune.defaultValue);
+    //this.changeGain(this.biquadFilter.gain.defaultValue);
+    //this.changeQ(0);
   }
 };
