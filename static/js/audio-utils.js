@@ -5,7 +5,7 @@ var AudioSource = {
     if (this.context) {
       return;
     }
-    var AudioContext = window.AudioContext || window.webkit-AudioContext;
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
     this.context = new AudioContext();
     this.playing = false;
   },
