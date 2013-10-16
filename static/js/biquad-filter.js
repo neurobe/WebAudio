@@ -5,7 +5,6 @@ var biquadFilter = {
     AudioSource.init();
     AudioSource.load(url);
     this.context = AudioSource.context;
-    this.setupGraph();
     console.log("biquadFilter init with url: " + this.url);
   },
   run: function bf_run() {
@@ -13,7 +12,7 @@ var biquadFilter = {
     this.playing = !this.playing;
   },
   play: function bf_play() {
-    this.source.buffer = AudioSource.buffer[this.url];
+    this.setupGraph();
     this.source.start(0);
   },
   stop: function bf_stop() {
@@ -41,6 +40,7 @@ var biquadFilter = {
   },
   setupGraph: function bf_setupGraph() {
     this.source = this.context.createBufferSource();
+    this.source.buffer = AudioSource.buffer[this.url];
     this.biquadFilter = this.context.createBiquadFilter();
     this.analyser = this.context.createAnalyser();
     this.source.connect(this.biquadFilter);
