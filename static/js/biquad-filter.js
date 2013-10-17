@@ -11,7 +11,6 @@ var biquadFilter = {
     this.Q = 1;
     this.gain = 100;
     this.detune = 10;
-    console.log("biquadFilter init with url: " + this.url);
   },
   run: function bf_run() {
     (this.playing ? this.stop() : this.play());
