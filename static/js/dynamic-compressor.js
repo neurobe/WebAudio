@@ -36,13 +36,13 @@ var dynamicsCompressor = {
     document.getElementById("threshold").nextSibling.innerHTML = val + "db";
   },
   changeKnee: function bf_changeKnee(input) {
-    var val = input/ 1000;
+    var val = input;
     this.dynamicsCompressor.knee.value = val;
     this.knee = val;
     document.getElementById("knee").nextSibling.innerHTML = val + "db";
   },
   changeRatio: function bf_changeRatio(val) {
-    this.dynamicsCompressor.ratio = val;
+    this.dynamicsCompressor.ratio.value = val;
     this.ratio = val;
   },
   changeAttack: function bf_changeAttack(input) {
