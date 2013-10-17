@@ -45,8 +45,8 @@ var dynamicsCompressor = {
     this.dynamicsCompressor.ratio.value = val;
     this.ratio = val;
   },
-  changeAttack: function bf_changeAttack(input) {
-    var val = input / 1000;
+  changeAttack: function bf_changeAttack(val) {
+    //var val = input / 1000;
     this.dynamicsCompressor.attack.value = val;
     this.attack = val;
     document.getElementById("attack").nextSibling.innerHTML = val + "db";
