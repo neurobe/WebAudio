@@ -1,5 +1,5 @@
 'use strict';
-var dynamicCompressor = {
+var dynamicsCompressor = {
   init: function bf_init(url) {
     this.url = url;
     AudioSource.init();
@@ -19,46 +19,50 @@ var dynamicCompressor = {
   play: function bf_play() {
     this.setupGraph();
     //reset with last values
-    this.dynamicCompressor.threshold.value = this.threshold;
-    this.dynamicCompressor.knee.value = this.knee;
-    this.dynamicCompressor.ratio.value = this.ratio;
-    this.dynamicCompressor.attack.value = this.attack;
-    this.dynamicCompressor.release.value = this.release;
+    this.dynamicsCompressor.threshold.value = this.threshold;
+    this.dynamicsCompressor.knee.value = this.knee;
+    this.dynamicsCompressor.ratio.value = this.ratio;
+    this.dynamicsCompressor.attack.value = this.attack;
+    this.dynamicsCompressor.release.value = this.release;
     this.source.start(0);
   },
   stop: function bf_stop() {
     this.source.stop(0);
   },
-  changeThreshold: function bf_changeThreshold(val) {
-    this.dynamicCompressor.threshold.value = val;
+  changeThreshold: function bf_changeThreshold(input) {
+    var val = input / 10;
+    this.dynamicsCompressor.threshold.value = val;
     this.threshold = val;
     document.getElementById("threshold").nextSibling.innerHTML = val + "db";
   },
-  changeKnee: function bf_changeKnee(val) {
-    this.dynamicCompressor.knee.value = val;
+  changeKnee: function bf_changeKnee(input) {
+    var val = input/ 1000;
+    this.dynamicsCompressor.knee.value = val;
     this.knee = val;
     document.getElementById("knee").nextSibling.innerHTML = val + "db";
   },
   changeRatio: function bf_changeRatio(val) {
-    this.dynamicCompressor.ratio = val;
+    this.dynamicsCompressor.ratio = val;
     this.ratio = val;
   },
-  changeAttack: function bf_changeAttack(val) {
-    this.dynamicCompressor.attack.value = val;
+  changeAttack: function bf_changeAttack(input) {
+    var val = input / 1000;
+    this.dynamicsCompressor.attack.value = val;
     this.attack = val;
     document.getElementById("attack").nextSibling.innerHTML = val + "db";
   },
-  changeRelease: function bf_changeRelease(val) {
-    this.dynamicCompressor.release.value = val;
+  changeRelease: function bf_changeRelease(input) {
+    var val = input / 1000;
+    this.dynamicsCompressor.release.value = val;
     this.release = val;
     document.getElementById("release").nextSibling.innerHTML = val + "db";
   },
   setupGraph: function bf_setupGraph() {
     this.source = this.context.createBufferSource();
     this.source.buffer = AudioSource.buffer[this.url];
-    this.dynamicCompressor = this.context.createDynamicsCompressor();
+    this.dynamicsCompressor = this.context.createDynamicsCompressor();
     this.analyser = this.context.createAnalyser();
-    this.source.connect(this.dynamicCompressor);
-    this.dynamicCompressor.connect(this.context.destination);
+    this.source.connect(this.dynamicsCompressor);
+    this.dynamicsCompressor.connect(this.context.destination);
   }
 };
