@@ -56,7 +56,7 @@ var dynamicCompressor = {
   setupGraph: function bf_setupGraph() {
     this.source = this.context.createBufferSource();
     this.source.buffer = AudioSource.buffer[this.url];
-    this.dynamicCompressor = this.context.createDynamicCompressor();
+    this.dynamicCompressor = this.context.createDynamicsCompressor();
     this.analyser = this.context.createAnalyser();
     this.source.connect(this.dynamicCompressor);
     this.dynamicCompressor.connect(this.context.destination);
