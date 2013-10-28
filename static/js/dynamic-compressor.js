@@ -29,14 +29,12 @@ var dynamicsCompressor = {
   stop: function bf_stop() {
     this.source.stop(0);
   },
-  changeThreshold: function bf_changeThreshold(input) {
-    var val = input / 10;
+  changeThreshold: function bf_changeThreshold(val) {
     this.dynamicsCompressor.threshold.value = val;
     this.threshold = val;
     document.getElementById("threshold").nextSibling.innerHTML = val + "db";
   },
-  changeKnee: function bf_changeKnee(input) {
-    var val = input;
+  changeKnee: function bf_changeKnee() {
     this.dynamicsCompressor.knee.value = val;
     this.knee = val;
     document.getElementById("knee").nextSibling.innerHTML = val + "db";
@@ -46,16 +44,14 @@ var dynamicsCompressor = {
     this.ratio = val;
   },
   changeAttack: function bf_changeAttack(val) {
-    //var val = input / 1000;
     this.dynamicsCompressor.attack.value = val;
     this.attack = val;
-    document.getElementById("attack").nextSibling.innerHTML = val + "db";
+    document.getElementById("attack").nextSibling.innerHTML = val + "sec";
   },
-  changeRelease: function bf_changeRelease(input) {
-    var val = input / 1000;
+  changeRelease: function bf_changeRelease(val) {
     this.dynamicsCompressor.release.value = val;
     this.release = val;
-    document.getElementById("release").nextSibling.innerHTML = val + "db";
+    document.getElementById("release").nextSibling.innerHTML = val + "sec";
   },
   setupGraph: function bf_setupGraph() {
     this.source = this.context.createBufferSource();

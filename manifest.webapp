@@ -8,10 +8,14 @@
     "url": "https://github.com/zapion/webaudio/"
   },
   "messages": [
-     { "alarm": "/index.html" }
+    {
+      "alarm": "/index.html"
+    }
   ],
   "permissions": {
-      "audio-channel-content" : {"description":  "Use the audio channel for a music player"}
+    "audio-channel-content": {
+      "description": "Use the audio channel for a music player"
+    }
   },
   "locales": {
     "ar": {
@@ -40,7 +44,10 @@
     "view": {
       "filters": {
         "type": "url",
-        "url": { "required":true, "pattern":"mailto:.{1,16384}" }
+        "url": {
+          "required": true,
+          "pattern": "mailto:.{1,16384}"
+        }
       }
     }
   },
