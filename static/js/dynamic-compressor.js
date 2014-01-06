@@ -34,7 +34,7 @@ var dynamicsCompressor = {
     this.threshold = val;
     document.getElementById("threshold").nextSibling.innerHTML = val + "db";
   },
-  changeKnee: function bf_changeKnee() {
+  changeKnee: function bf_changeKnee(val) {
     this.dynamicsCompressor.knee.value = val;
     this.knee = val;
     document.getElementById("knee").nextSibling.innerHTML = val + "db";
@@ -42,6 +42,7 @@ var dynamicsCompressor = {
   changeRatio: function bf_changeRatio(val) {
     this.dynamicsCompressor.ratio.value = val;
     this.ratio = val;
+    document.getElementById("ratio").nextSibling.innerHTML = val;
   },
   changeAttack: function bf_changeAttack(val) {
     this.dynamicsCompressor.attack.value = val;
