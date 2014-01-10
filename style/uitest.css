@@ -140,7 +140,7 @@ label{
     display: inline-block;
     float: left;
     clear: left;
-    width: 250px;
+    width: 80px;
     text-align: right;
 }
 input{
@@ -148,6 +148,6 @@ input{
   float: left;
 }
 select{
-  display: inline-block;
-  float: left;
+  display: block;
+  float: none;
 }

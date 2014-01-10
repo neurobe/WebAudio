@@ -25,6 +25,7 @@ var biquadFilter = {
     this.biquadFilter.detune.value = this.detune;
     this.biquadFilter.gain.value = this.gain;
     this.source.start(0);
+    requestAnimFrame(this.draw.bind(this));
   },
   stop: function bf_stop() {
     this.source.stop(0);
@@ -59,7 +60,55 @@ var biquadFilter = {
     this.source.buffer = AudioSource.buffer[this.url];
     this.biquadFilter = this.context.createBiquadFilter();
     this.analyser = this.context.createAnalyser();
+
+    //Store frequency value from analyser
+    this.freqs = new Uint8Array(this.analyser.frequencyBinCount);
+    this.times = new Uint8Array(this.analyser.frequencyBinCount);
+
     this.source.connect(this.biquadFilter);
-    this.biquadFilter.connect(this.context.destination);
+    this.biquadFilter.connect(this.analyser);
+    this.analyser.connect(this.context.destination);
+  },
+  //Draw function for analyser
+  draw: function bf_draw() {
+    this.analyser.smoothingTimeConstant = SMOOTHING;
+    this.analyser.fftSize = FFT_SIZE;
+
+    this.analyser.getByteFrequencyData(this.freqs);
+    this.analyser.getByteTimeDomainData(this.times);
+
+    var width = Math.floor(1/this.freqs.length, 10);
+
+    var canvas = document.querySelector('canvas');
+    var drawContext = canvas.getContext('2d');
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+    //Draw freq chart
+    for( var i = 0; i < this.analyser.frequencyBinCount; i++ ) {
+      var value = this.freqs[i];
+      var percent = value / 256;
+      var height = HEIGHT * percent;
+      var offset = HEIGHT - height - 1;
+      var barWidth = WIDTH / this.analyser.frequencyBinCount;
+      var hue = i / this.analyser.frequencyBinCount * 360;
+      drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+      drawContext.fillRect( i * barWidth, offset, barWidth, height);
+    }
+
+    //Draw time chart
+    for( i = 0; i < this.analyser.frequencyBinCount; i++ ){
+      value = this.times[i];
+      percent = value / 256;
+      height = HEIGHT * percent;
+      offset = HEIGHT - height - 1;
+      barWidth = WIDTH / this.analyser.frequencyBinCount;
+      drawContext.fillStyle = 'white';
+      drawContext.fillRect( i * barWidth, offset, 1, 2);
+    }
+
+    if( this.playing ) {
+      requestAnimFrame(this.draw.bind(this));
+    }
   }
 };
+
