@@ -1,36 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
   <meta charset="utf-8">
   <title>>Web Audio Samples</title>
-  <!-- TODO: dynamic Compressor page -->
   <link rel="stylesheet" type="text/css" href="style/uitest.css">
-  <!--link rel="stylesheet" type="text/css" href="shared/style/buttons.css"-->
+  <link rel="stylesheet" type="text/css" href="style/lists.css" >
+  <link rel="stylesheet" type="text/css" href="shared/style/headers.css">
+  <link rel="stylesheet" type="text/css" href="shared/style/lists.css">
   <script type="text/javascript" src="js/uitest.js"></script>
+  <script defer src="shared/js/lazy_loader.js"></script>
+  <script defer src="shared/js/accessibility_helper.js"></script>
 </head>
 <body>
-  <div id="tests" class="panel">
-    <div class="toolbar toolbar-top">
-      <p class="toolbar-title">Web Audio Samples</p>
+  <div class="panel list-panel">
+    <div id="API-tests" class="page">
+      <section role="region">
+        <header>
+          <h1>API Tests</h1>
+        </header>
+      </section>
+      <section data-type="list">
+        <ul class="sublist">
+          <li><a href="#test=audio-tag">audio-tag</a></li>
+          <li><a href="#test=script-processor">script-processor</a></li>
+          <li><a href="#test=oscillator">oscillator</a></li>
+          <li><a href="#test=webaudio-common">load with webaudio</a></li>
+          <li><a href="#test=gain">gain</a></li>
+          <li><a href="#test=biquad-filter">biquad-filter</a></li>
+          <li><a href="#test=convolver">convolver</a></li>
+          <li><a href="#test=dynamic-compressor">dynamic compressor</a></li>
+          <li><a href="#test=wave-shaper">wave shaper</a></li>
+        </ul>
+      </section>
+    </div>    
+    
+    <div id="tabs" class="tabs">
+      <ul role="tablist" class="bb-tablist" data-items="3">
+        <li id="panel1" role="presentation">
+          <a href="#UI" id="UI" role="tab" aria-controls="UIpanel">UI</a>
+          <div id="UIpanel" class="bb-tabpanel" role="tabpanel" aria-labelledby="UI"></div>
+        </li>
+        <li id="panel2" role="presentation">
+          <a href="#API" id="API" role="tab" aria-controls="APIpanel">API</a>
+          <div id="APIpanel" class="bb-tabpanel" role="tabpanel" aria-labelledby="API"></div>
+        </li>
+        <li id="panel3" role="presentation">
+          <a href="#HW" id="HW" role="tab" aria-controls="HWpanel">HW</a>
+          <div id="HWpanel" class="bb-tabpanel" role="tabpanel" aria-labelledby="HW"></div>
+        </li>
+      </ul>
     </div>
-    <ul class="list" id="test-list">
-      <li><a href="#test=audio-tag">audio-tag</a></li>
-      <li><a href="#test=script-processor">script-processor</a></li>
-      <li><a href="#test=oscillator">oscillator</a></li>
-      <li><a href="#test=webaudio-common">load with webaudio</a></li>
-      <li><a href="#test=gain">gain</a></li>
-      <li><a href="#test=biquad-filter">biquad-filter</a></li>
-      <li><a href="#test=convolver">convolver</a></li>
-      <li><a href="#test=dynamic-compressor">dynamic compressor</a></li>
-      <li><a href="#test=wave-shaper">wave shaper</a></li>
-    </ul>
   </div>
-  <div id="test-panel" class="panel">
-    <div class="toolbar toolbar-top">
-      <menu type="toolbar"><button id="test-panel-back"><span class="icon icon-close">close</span></button>
-      </menu>
-      <p id="test-panel-title" class="toolbar-title"></p>
-    </div>
+  <div id="test-panel" class="panel test-panel" style="background-color:#FFF">
+    <section role="region">
+      <header>
+        <button id="test-panel-back"><span class="icon icon-back">back</span></button>
+        <h1 id="test-panel-title" class="header-title"></h1>
+      </header>
+    </section>
     <iframe id="test-iframe" mozallowfullscreen="true"></iframe>
   </div>
 </body>

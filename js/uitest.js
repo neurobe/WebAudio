@@ -1,11 +1,19 @@
 'use stricts';
 
 var UITest = {
-  get testList() {
-    delete this.testList;
-    return this.testList = document.getElementById('test-list');
+  get UItests() {
+    delete this.UItests;
+    return this.UItests = document.getElementById('UI-tests');
   },
-  get iframe() {
+  get APItests() {
+    delete this.APItests;
+    return this.APItests = document.getElementById('API-tests');
+  },
+  get HWtests() {
+    delete this.HWtests;
+    return this.HWtests = document.getElementById('HW-tests');
+  },
+ get iframe() {
     delete this.iframe;
     return this.iframe = document.getElementById('test-iframe');
   },
@@ -17,23 +25,56 @@ var UITest = {
     delete this.panelTitle;
     return this.panelTitle = document.getElementById('test-panel-title');
   },
+  get tabs() {
+    delete this.tabs;
+    return this.tabs = document.querySelectorAll('[role="tab"]');
+  },
+  get UITab() {
+    delete this.UITab;
+    return this.UITab = document.getElementById('UI');
+  },
+  get APITab() {
+    delete this.APITab;
+    return this.APITab = document.getElementById('API');
+  },
+  get HWTab() {
+    delete this.HWTab;
+    return this.HWTab = document.getElementById('HW');
+  },
+  currentTab: 'UI',
+  handleNotificationMessage: function(message) {
+    if (!message.clicked) {
+      return;
+    }
+
+    // handle notifications when uitest is closed
+    navigator.mozApps.getSelf().onsuccess = function gotSelf(evt) {
+      var app = evt.target.result;
+
+      app.launch();
+    };
+  },
   init: function ut_init() {
-    this.testList.addEventListener('click', this);
     this.iframe.addEventListener('load', this);
     this.iframe.addEventListener('unload', this);
     document.body.addEventListener('transitionend', this);
     window.addEventListener('keyup', this);
     window.addEventListener('hashchange', this);
     this.backBtn.addEventListener('click', this);
+    navigator.mozSetMessageHandler('notification', function(msg) {
+      this.handleNotificationMessage(msg);
+    }.bind(this));
 
     var name = this.getNameFromHash();
     if (name) {
-      //this.openTest(name);
-      window.location.hash = '';
+      this.openTest(name);
+    }
+    else {
+      // if no test is specified, load UI tests list (select UI tab)
+      window.location.hash = 'UI';
     }
   },
   uninit: function ut_uninit() {
-    this.testList.removeEventListener('click', this);
     this.iframe.removeEventListener('load', this);
     this.iframe.removeEventListener('unload', this);
     document.body.removeEventListener('transitionend', this);
@@ -61,13 +102,43 @@ var UITest = {
         this.iframe.contentWindow.removeEventListener('keyup', this);
         break;
       case 'hashchange':
-        var name = this.getNameFromHash();
-        if (!name) {
-          this.closeTest();
-          return;
+        if (window.location.hash == '#UI')
+        {
+          this.UItests.classList.remove('invisible');
+          AccessibilityHelper.setAriaSelected(this.UITab, this.tabs);
+          if (!this.HWtests.classList.contains('invisible'))
+            this.HWtests.classList.add('invisible');
+          if (!this.APItests.classList.contains('invisible'))
+            this.APItests.classList.add('invisible');
         }
-        this.panelTitle.textContent = name;
-        this.openTest(name);
+        else if (window.location.hash == '#API')
+        {
+          this.APItests.classList.remove('invisible');
+          AccessibilityHelper.setAriaSelected(this.APITab, this.tabs);
+          if (!this.UItests.classList.contains('invisible'))
+            this.UItests.classList.add('invisible');
+          if (!this.HWtests.classList.contains('invisible'))
+            this.HWtests.classList.add('invisible');
+        }
+        else if (window.location.hash == '#HW')
+        {
+          this.HWtests.classList.remove('invisible');
+          AccessibilityHelper.setAriaSelected(this.HWTab, this.tabs);
+          if (!this.UItests.classList.contains('invisible'))
+            this.UItests.classList.add('invisible');
+          if (!this.APItests.classList.contains('invisible'))
+            this.APItests.classList.add('invisible');
+        }
+        else
+        {
+          var name = this.getNameFromHash();
+          if (!name) {
+            this.closeTest();
+            return;
+          }
+          this.panelTitle.textContent = name;
+          this.openTest(name);
+        }
         break;
       case 'transitionend':
         var name = this.getNameFromHash();
@@ -77,20 +148,26 @@ var UITest = {
     }
   },
   openTest: function ut_openTest(name) {
+    // save tab name from URL
+    // e.g. '#test=UI/empty' => 'UI'
+    this.currentTab = (/=\b(.+)\//.exec(window.location.hash) || [])[1];
     document.body.classList.add('test');
 
     var self = this;
     window.setTimeout(function openTestPage() {
       self.iframe.src = './' + name + '.html';
     }, 200);
-},
+  },
   closeTest: function ut_closeTest() {
     var isOpened = document.body.classList.contains('test');
     if (!isOpened)
       return false;
     document.body.classList.remove('test');
+
+    // select tab after close test iframe
+    window.location.hash = this.currentTab;
     return true;
   }
 };
 
-window.onload = UITest.init.bind(UITest);
+window.addEventListener('load', UITest.init.bind(UITest));

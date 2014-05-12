@@ -1,55 +1,35 @@
 {
-  "name": "WebAudio",
-  "description": "test app for webaudio",
-  "type": "web",
+  "name": "webaudio test",
   "launch_path": "/index.html",
+  "type": "certified",
   "developer": {
-    "name": "MozQATW Team",
-    "url": "https://github.com/zapion/webaudio/"
+    "name": "Moz TWQA",
+    "url": "https://github.com/zapion/webaudio"
   },
   "messages": [
-    {
-      "alarm": "/index.html"
-    }
+       { "notification": "/index.html" }
   ],
-  "permissions": {
-    "audio-channel-content": {
-      "description": "Use the audio channel for a music player"
-    }
-  },
-  "locales": {
-    "ar": {
-      "name": "WebAudio",
-      "description": "Web Audio"
-    },
-    "en-US": {
-      "name": "WebAudio",
-      "description": "Web Audio"
-    },
-    "fr": {
-      "name": "WebAudio",
-      "description": "Web Audio"
-    },
-    "zh-TW": {
-      "name": "WebAudio",
-      "description": "Web Audio"
-    }
-  },
-  "default_locale": "en-US",
   "icons": {
-    "79": "/style/icons/webauido.png",
-    "128": "/style/icons/128x128.png"
+    "120": "/style/icons/Uitest.png"
   },
-  "activities": {
-    "view": {
-      "filters": {
-        "type": "url",
-        "url": {
-          "required": true,
-          "pattern": "mailto:.{1,16384}"
-        }
-      }
-    }
-  },
-  "orientation": "portrait-primary"
+  "permissions": {
+    "fmradio":{},
+    "browser":{},
+    "geolocation":{},
+    "wifi-manage":{},
+    "mobilenetwork":{},
+    "mobileconnection":{},
+    "power":{},
+    "backgroundservice":{},
+    "attention":{},
+    "contacts":{ "access": "readwrite" },
+    "settings":{ "access": "readwrite" },
+    "desktop-notification":{},
+    "device-storage:sdcard":{ "access": "readwrite" },
+    "settings":{ "access": "readwrite" },
+    "audio-capture":{},
+    "video-capture":{},
+    "bluetooth":{},
+    "downloads":{}
+  }
 }
